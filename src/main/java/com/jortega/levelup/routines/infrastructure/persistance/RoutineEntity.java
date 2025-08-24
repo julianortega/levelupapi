@@ -8,7 +8,7 @@ import org.springframework.data.domain.Persistable;
 import java.util.*;
 import java.util.UUID;
 
-@Entity @Table(name = "routine")
+@Entity @Table(name = "routines")
 @Getter @Setter
 public class RoutineEntity implements Persistable<UUID> {
 

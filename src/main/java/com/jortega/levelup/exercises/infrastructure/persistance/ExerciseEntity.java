@@ -1,25 +1,30 @@
 package com.jortega.levelup.exercises.infrastructure.persistance;
 
+import com.jortega.levelup.shared.domain.Equipment;
+import com.jortega.levelup.shared.domain.MuscleGroup;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.UUID;
 
-@Entity @Table(name = "exercise")
+@Entity @Table(name = "exercises")
+@Getter @Setter
 public class ExerciseEntity {
-    @Id private UUID id; // catálogo preseeded usa IDs estables
-    @Column(nullable = false) private String name;
-    @Column(name = "primary_muscle", nullable = false) private String primaryMuscle;
-    @Column(nullable = false) private String equipment;
-    @Column(nullable = false) private boolean unilateral;
+    @Id
+    private UUID id;
 
+    @Column(nullable = false)
+    private String name;
 
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getPrimaryMuscle() { return primaryMuscle; }
-    public void setPrimaryMuscle(String primaryMuscle) { this.primaryMuscle = primaryMuscle; }
-    public String getEquipment() { return equipment; }
-    public void setEquipment(String equipment) { this.equipment = equipment; }
-    public boolean isUnilateral() { return unilateral; }
-    public void setUnilateral(boolean unilateral) { this.unilateral = unilateral; }
+    @Column(name = "primary_muscle", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private MuscleGroup primaryMuscle;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Equipment equipment;
+
+    @Column(nullable = false)
+    private boolean unilateral;
 }

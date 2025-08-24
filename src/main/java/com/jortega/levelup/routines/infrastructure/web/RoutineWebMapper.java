@@ -15,7 +15,7 @@ public final class RoutineWebMapper {
         for (RoutineDay d : r.getDays()) {
             List<RoutineResponse.Ex> exs = new ArrayList<>();
             for (RoutineExercise rx : d.getExercises()) {
-                exs.add(new RoutineResponse.Ex(rx.getId(), rx.getExerciseId(), rx.getTargetSets(), rx.getTargetRepsMin(), rx.getTargetRepsMax(), rx.getNotes()));
+                exs.add(new RoutineResponse.Ex(rx.getId(), rx.getExerciseId(), rx.getTargetSets(), rx.getTargetRepsMin(), rx.getTargetRepsMax()));
             }
             days.add(new RoutineResponse.Day(d.getId(), d.getDayIndex(), d.getName(), exs));
         }

@@ -3,6 +3,7 @@ package com.jortega.levelup.routines.application;
 import com.jortega.levelup.exercises.port.out.ExerciseRepository;
 import com.jortega.levelup.routines.domain.Routine;
 import com.jortega.levelup.routines.domain.RoutineDay;
+import com.jortega.levelup.routines.domain.RoutineService;
 import com.jortega.levelup.routines.port.in.CreateRoutineUseCase;
 import com.jortega.levelup.routines.port.out.RoutineRepository;
 
@@ -14,10 +15,12 @@ import java.util.UUID;
 public class CreateRoutineService implements CreateRoutineUseCase {
     private final RoutineRepository routines;
     private final ExerciseRepository exercises;
+    private final RoutineService routineService;
 
-
-    public CreateRoutineService(RoutineRepository routines, ExerciseRepository exercises) {
-        this.routines = routines; this.exercises = exercises;
+    public CreateRoutineService(RoutineRepository routines, ExerciseRepository exercises, RoutineService routineService) {
+        this.routines = routines; 
+        this.exercises = exercises;
+        this.routineService = routineService;
     }
 
 
@@ -29,7 +32,7 @@ public class CreateRoutineService implements CreateRoutineUseCase {
         if (found.size() != ids.size()) throw new IllegalArgumentException("Some exerciseIds do not exist");
 
 
-        Routine r = new Routine(null, cmd.ownerUserId, cmd.name);
+        Routine r = routineService.createRoutine(cmd.ownerUserId, cmd.name);
         for (var day : cmd.days) {
             RoutineDay d = r.addDay(day.dayIndex, day.name);
             for (var ex : day.exercises) {

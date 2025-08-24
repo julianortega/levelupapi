@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.*;
 import java.util.UUID;
 
-@Entity @Table(name = "routine_day", uniqueConstraints = @UniqueConstraint(name = "uk_routine_day_index", columnNames = {"routine_id","day_index"}))
+@Entity @Table(name = "routine_days", uniqueConstraints = @UniqueConstraint(name = "uk_routine_day_index", columnNames = {"routine_id","day_index"}))
 @Getter @Setter
 public class RoutineDayEntity {
     @Id @GeneratedValue

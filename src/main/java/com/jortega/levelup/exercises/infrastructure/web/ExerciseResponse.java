@@ -1,8 +1,6 @@
 package com.jortega.levelup.exercises.infrastructure.web;
 
-import com.jortega.levelup.exercises.domain.Exercise;
-import com.jortega.levelup.shared.domain.Equipment;
-import com.jortega.levelup.shared.domain.MuscleGroup;
+import com.jortega.levelup.exercises.domain.model.Exercise;
 
 import java.util.UUID;
 

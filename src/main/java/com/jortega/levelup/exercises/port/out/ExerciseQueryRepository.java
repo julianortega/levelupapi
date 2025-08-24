@@ -1,9 +1,9 @@
 package com.jortega.levelup.exercises.port.out;
 
-import com.jortega.levelup.exercises.domain.Exercise;
-import java.util.List;
+import com.jortega.levelup.exercises.domain.model.Exercise;
+import com.jortega.levelup.exercises.domain.ListExercisesQuery;
+import com.jortega.levelup.exercises.api.dto.PageResult;
 
 public interface ExerciseQueryRepository {
-    List<Exercise> search(String search, int page, int size);
-    long count(String search);
+    PageResult<Exercise> search(ListExercisesQuery q);
 }

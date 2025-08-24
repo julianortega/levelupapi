@@ -1,4 +1,4 @@
-package com.jortega.levelup.exercises.domain;
+package com.jortega.levelup.exercises.domain.model;
 
 import com.jortega.levelup.shared.domain.Equipment;
 import com.jortega.levelup.shared.domain.MuscleGroup;

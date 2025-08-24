@@ -1,7 +1,5 @@
 package com.jortega.levelup.routines.domain;
 
-import com.jortega.levelup.exercises.domain.Exercise;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +30,7 @@ public final class RoutineDay {
         if (exerciseId == null) throw new IllegalArgumentException("exerciseId required");
         if (targetSets < 1 || targetSets > 10) throw new IllegalArgumentException("targetSets 1..10");
         if (repsMin < 1 || repsMin > repsMax) throw new IllegalArgumentException("reps range invalid");
-        RoutineExercise re = new RoutineExercise(UUID.randomUUID(), exerciseId, targetSets, repsMin, repsMax, null);
+        RoutineExercise re = new RoutineExercise(UUID.randomUUID(), exerciseId, targetSets, repsMin, repsMax);
         this.exercises.add(re);
         return re;
     }

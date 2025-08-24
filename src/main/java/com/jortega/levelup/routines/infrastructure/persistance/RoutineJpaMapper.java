@@ -15,7 +15,7 @@ public final class RoutineJpaMapper {
         for (RoutineDayEntity de : e.getDays()) {
             RoutineDay d = new RoutineDay(de.getId(), de.getDayIndex(), de.getName());
             for (RoutineExerciseEntity re : de.getExercises()) {
-                RoutineExercise rx = new RoutineExercise(re.getId(), re.getExerciseId(), re.getTargetSets(), re.getTargetRepsMin(), re.getTargetRepsMax(), re.getNotes());
+                RoutineExercise rx = new RoutineExercise(re.getId(), re.getExerciseId(), re.getTargetSets(), re.getTargetRepsMin(), re.getTargetRepsMax());
                 d.addExercise(re.getExerciseId(), re.getTargetSets(), re.getTargetRepsMin(), re.getTargetRepsMax());
             }
             r.addDay(d.getDayIndex(), d.getName());
@@ -75,7 +75,6 @@ public final class RoutineJpaMapper {
         re.setTargetSets(rx.getTargetSets());
         re.setTargetRepsMin(rx.getTargetRepsMin());
         re.setTargetRepsMax(rx.getTargetRepsMax());
-        re.setNotes(rx.getNotes());
         exEntities.add(re);
     }
 
@@ -108,7 +107,6 @@ public final class RoutineJpaMapper {
                 re.setTargetSets(rx.getTargetSets());
                 re.setTargetRepsMin(rx.getTargetRepsMin());
                 re.setTargetRepsMax(rx.getTargetRepsMax());
-                re.setNotes(rx.getNotes());
                 dayEntity.getExercises().add(re);
             }
         }

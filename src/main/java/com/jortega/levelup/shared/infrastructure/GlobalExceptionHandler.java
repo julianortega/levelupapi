@@ -1,4 +1,4 @@
-package com.jortega.levelup.shared.infrastructure.web;
+package com.jortega.levelup.shared.infrastructure;
 
 import com.jortega.levelup.shared.domain.exception.DomainException;
 import com.jortega.levelup.shared.domain.exception.ResourceNotFoundException;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

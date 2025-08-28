@@ -24,10 +24,12 @@ public interface CreateRoutineUseCase {
             }
         }
         public static final class Ex {
-            public final UUID exerciseId; public final int sets; public final int repsMin; public final int repsMax;
-            public Ex(UUID exerciseId, int sets, int repsMin, int repsMax) {
+            public final UUID exerciseId; public final int sets; public final int repsMin; public final int repsMax; public final int restSeconds; public final String notes;
+            public Ex(UUID exerciseId, int sets, int repsMin, int repsMax, int restSeconds, String notes) {
                 this.exerciseId = Objects.requireNonNull(exerciseId);
                 this.sets = sets; this.repsMin = repsMin; this.repsMax = repsMax;
+                this.restSeconds = restSeconds;
+                this.notes = notes;
             }
         }
     }

@@ -31,7 +31,7 @@ public class RegisterUserService implements RegisterUserUseCase {
         // Create user
         User user = userService.createUser(command.email(), command.username(), command.password());
         User savedUser = userRepository.save(user);
-        
+
         return new Result(savedUser.getId(), savedUser.getEmail(), savedUser.getUsername());
     }
 }

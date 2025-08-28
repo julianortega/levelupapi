@@ -1,8 +1,10 @@
 package com.jortega.levelup.routines.domain;
 
-import java.util.*;
-import java.util.UUID;
+import lombok.Getter;
 
+import java.util.*;
+
+@Getter
 public final class Routine {
     private final UUID id;
     private final UUID ownerUserId;
@@ -18,18 +20,12 @@ public final class Routine {
         this.name = name;
     }
 
-
-    public UUID getId() { return id; }
-    public UUID getOwnerUserId() { return ownerUserId; }
-    public String getName() { return name; }
     public List<RoutineDay> getDays() { return Collections.unmodifiableList(days); }
-
 
     public void rename(String newName) {
         if (newName == null || newName.isBlank()) throw new IllegalArgumentException("name blank");
         this.name = newName;
     }
-
 
     public RoutineDay addDay(int dayIndex, String dayName) {
         if (dayIndex < 1 || dayIndex > 7) throw new IllegalArgumentException("dayIndex must be 1..7");

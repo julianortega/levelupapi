@@ -15,8 +15,8 @@ public final class RoutineJpaMapper {
         for (RoutineDayEntity de : e.getDays()) {
             RoutineDay d = new RoutineDay(de.getId(), de.getDayIndex(), de.getName());
             for (RoutineExerciseEntity re : de.getExercises()) {
-                RoutineExercise rx = new RoutineExercise(re.getId(), re.getExerciseId(), re.getTargetSets(), re.getTargetRepsMin(), re.getTargetRepsMax());
-                d.addExercise(re.getExerciseId(), re.getTargetSets(), re.getTargetRepsMin(), re.getTargetRepsMax());
+                RoutineExercise rx = new RoutineExercise(re.getId(), re.getExerciseId(), re.getSets(), re.getRepsMin(), re.getRepsMax(), re.getRestSeconds(), re.getNotes());
+                d.addExercise(re.getExerciseId(), re.getSets(), re.getRepsMin(), re.getRepsMax(), re.getRestSeconds(), re.getNotes());
             }
             r.addDay(d.getDayIndex(), d.getName());
         }
@@ -72,13 +72,13 @@ public final class RoutineJpaMapper {
     private static void mapRoutineExerciseToEntity(RoutineDayEntity de, List<RoutineExerciseEntity> exEntities, RoutineExercise rx, RoutineExerciseEntity re) {
         re.setDay(de);
         re.setExerciseId(rx.getExerciseId());
-        re.setTargetSets(rx.getTargetSets());
-        re.setTargetRepsMin(rx.getTargetRepsMin());
-        re.setTargetRepsMax(rx.getTargetRepsMax());
+        re.setSets(rx.getSets());
+        re.setRepsMin(rx.getRepsMin());
+        re.setRepsMax(rx.getRepsMax());
         exEntities.add(re);
     }
 
-    public static RoutineEntity toEntityUpdate(Routine source, RoutineEntity targetManaged) {
+    public static void toEntityUpdate(Routine source, RoutineEntity targetManaged) {
         targetManaged.setName(source.getName());
         targetManaged.setOwnerUserId(source.getOwnerUserId());
 
@@ -104,15 +104,14 @@ public final class RoutineJpaMapper {
                 RoutineExerciseEntity re = new RoutineExerciseEntity();
                 re.setDay(dayEntity);
                 re.setExerciseId(rx.getExerciseId());
-                re.setTargetSets(rx.getTargetSets());
-                re.setTargetRepsMin(rx.getTargetRepsMin());
-                re.setTargetRepsMax(rx.getTargetRepsMax());
+                re.setSets(rx.getSets());
+                re.setRepsMin(rx.getRepsMin());
+                re.setRepsMax(rx.getRepsMax());
                 dayEntity.getExercises().add(re);
             }
         }
 
         targetManaged.getDays().removeIf(de -> !keepIndexes.contains(de.getDayIndex()));
 
-        return targetManaged;
     }
 }

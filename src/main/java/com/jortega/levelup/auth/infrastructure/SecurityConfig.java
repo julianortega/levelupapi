@@ -1,4 +1,4 @@
-package com.jortega.levelup.shared.infrastructure.security;
+package com.jortega.levelup.auth.infrastructure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,11 +24,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/exercises").permitAll()
-                .requestMatchers("/api/exercises/{id}").permitAll()
-                .anyRequest().authenticated()
+                .cors(c -> {})
+                .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/", "/index.html", "/auth.html", "/favicon.ico", "/assets/**", "/css/**", "/js/**").permitAll()
+                    .requestMatchers("/api/auth/**").permitAll()
+                    .requestMatchers("/api/exercises").permitAll()
+                    .requestMatchers("/api/exercises/{id}").permitAll()
+                    .anyRequest().authenticated()
             )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

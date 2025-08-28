@@ -1,6 +1,6 @@
 package com.jortega.levelup.users.infrastructure.config;
 
-import com.jortega.levelup.shared.infrastructure.security.JwtService;
+import com.jortega.levelup.auth.infrastructure.JwtService;
 import com.jortega.levelup.users.application.LoginUserService;
 import com.jortega.levelup.users.application.RegisterUserService;
 import com.jortega.levelup.users.domain.UserService;

@@ -1,8 +1,11 @@
 package com.jortega.levelup.users.domain;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Getter
 public final class User {
     private final UUID id;
     private final String email;
@@ -11,7 +14,7 @@ public final class User {
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
 
-    public User(UUID id, String email, String username, String passwordHash, 
+    public User(UUID id, String email, String username, String passwordHash,
                 LocalDateTime createdAt, LocalDateTime updatedAt) {
         if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("Email cannot be null or empty");
@@ -22,7 +25,7 @@ public final class User {
         if (passwordHash == null || passwordHash.trim().isEmpty()) {
             throw new IllegalArgumentException("Password hash cannot be null or empty");
         }
-        
+
         this.id = id == null ? UUID.randomUUID() : id;
         this.email = email.toLowerCase().trim();
         this.username = username.trim();
@@ -31,10 +34,4 @@ public final class User {
         this.updatedAt = updatedAt == null ? LocalDateTime.now() : updatedAt;
     }
 
-    public UUID getId() { return id; }
-    public String getEmail() { return email; }
-    public String getUsername() { return username; }
-    public String getPasswordHash() { return passwordHash; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public LocalDateTime getUpdatedAt() { return updatedAt; }
 }

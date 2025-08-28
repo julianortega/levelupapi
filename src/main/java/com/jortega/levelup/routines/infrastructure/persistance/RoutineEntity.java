@@ -5,10 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.domain.Persistable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-@Entity @Table(name = "routines")
+@Entity @Table(name = "routine")
 @Getter @Setter
 public class RoutineEntity implements Persistable<UUID> {
 

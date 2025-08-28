@@ -1,23 +1,21 @@
 package com.jortega.levelup.users.infrastructure.persistance;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.domain.Persistable;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "users")
+@Entity @Table(name = "app_user")
 @Data
-@NoArgsConstructor
-public class UserEntity {
-    
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class UserEntity implements Persistable<UUID> {
+
+    @Id @EqualsAndHashCode.Include
     private UUID id;
     
     @Column(name = "email", unique = true, nullable = false, length = 255)
@@ -34,7 +32,7 @@ public class UserEntity {
     
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
-    
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -45,4 +43,9 @@ public class UserEntity {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    @Transient private boolean isNew;
+    @Override public boolean isNew() { return isNew || id == null;}
+    public void markNew() { this.isNew = true; }
+    @PostLoad void loaded(){ this.isNew = false; }
 }

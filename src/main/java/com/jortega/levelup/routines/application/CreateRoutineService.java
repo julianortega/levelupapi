@@ -36,7 +36,7 @@ public class CreateRoutineService implements CreateRoutineUseCase {
         for (var day : cmd.days) {
             RoutineDay d = r.addDay(day.dayIndex, day.name);
             for (var ex : day.exercises) {
-                d.addExercise(ex.exerciseId, ex.sets, ex.repsMin, ex.repsMax);
+                d.addExercise(ex.exerciseId, ex.sets, ex.repsMin, ex.repsMax, ex.restSeconds, ex.notes);
             }
         }
         return routines.save(r).getId();

@@ -1,14 +1,13 @@
 package com.jortega.levelup.users.application;
 
 import com.jortega.levelup.shared.domain.exception.ValidationException;
-import com.jortega.levelup.shared.infrastructure.security.JwtService;
+import com.jortega.levelup.auth.infrastructure.JwtService;
 import com.jortega.levelup.users.domain.User;
 import com.jortega.levelup.users.domain.UserService;
 import com.jortega.levelup.users.port.in.LoginUserUseCase;
 import com.jortega.levelup.users.port.out.UserRepository;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class LoginUserService implements LoginUserUseCase {
     private final UserRepository userRepository;

@@ -1,28 +1,25 @@
 package com.jortega.levelup.routines.infrastructure.persistance;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
-@Entity @Table(name = "routine_exercises")
-@Getter @Setter
+@Entity @Table(name = "routine_exercise")
+@Getter @Setter @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class RoutineExerciseEntity {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @EqualsAndHashCode.Include
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name="routine_day_id", nullable=false)
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "routine_day_id", nullable = false)
     private RoutineDayEntity day;
 
-    @Column(name="exercise_id", nullable=false)
-    private UUID exerciseId;
-
-    @Column(name = "sets", nullable = false)
-    private int targetSets;
-    @Column(name = "reps_min", nullable = false)
-    private int targetRepsMin;
-    @Column(name = "reps_max", nullable = false)
-    private int targetRepsMax;
-    
+    @Column(name = "exercise_id", nullable = false) private UUID exerciseId;
+    @Column(nullable = false) private int sets;
+    @Column(nullable = false) private int repsMin;
+    @Column(nullable = false) private int repsMax;
+    @Column(name = "rest_seconds", nullable = false) private int restSeconds;
+    @Column private String notes;
 }
